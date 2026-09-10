@@ -53,13 +53,19 @@ const createMenuItem = async (req, res) => {
 // Get All Menu Items - Public
 const getMenuItems = async (req, res) => {
   try {
-    const menuItems = await MenuItem.find();
+    console.log("GET /api/menu called");
 
-    res.status(200).json(menuItems);
+    const menuItems = await MenuItem.find().lean();
+
+    console.log("Menu items found:", menuItems.length);
+
+    return res.status(200).json(menuItems);
 
   } catch (error) {
-    res.status(500).json({
-      message: "Server Error",
+    console.error("GET MENU ERROR:", error);
+
+    return res.status(500).json({
+      message: "Failed to load menu items",
       error: error.message
     });
   }
