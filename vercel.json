@@ -9,5 +9,13 @@
       "root": "backend/",
       "framework": "express"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ]
 }
